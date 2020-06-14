@@ -1,4 +1,8 @@
 # Acronyms-and-Abbreviation-Expansion
-This repository explores potential new ways to restore acronyms past the conventional dictionary approach
+This repository explores potential new ways to restore acronyms past the conventional dictionary approach. 
 
-testing git
+
+## Contents
+
+
+## Background Information
