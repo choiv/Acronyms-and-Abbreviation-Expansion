@@ -9,9 +9,10 @@ This repository explores potential new ways to restore acronyms past the convent
 Throughout the development of modern day language, acronyms have been coined and used to shorten commonly used text-based word sequences. By definition acronyms are an abbreviation formed from the initial letters of other words and pronounced as a word. A growing concern presents itself in the medical industry as acronyms are encouraged due to volatile time pressure. Other constraints such as character limitation in databases also play a role in encouraging the use of acronyms. 
 
 A major problem then presents itself as an issue of the reinterpretation of acronyms, especially in inconsistently defined or non-universally used ones.  Acronyms can be classified into two different groups:
-[LIST] 
-Standard abbreviations - These abbreviations are widely accepted and generally used such as: HIV (Human Immunodeficiency Virus) and SARS (Severe Acute Respiratory Syndromes). 
-Ad hoc abbreviations – These abbreviations are used on more localized cases and are usually specific to the user’s own notations or context. For example, a physician may abbreviate hypertension as HTN. 
+
+1. Standard abbreviations - These abbreviations are widely accepted and generally used such as: HIV (Human Immunodeficiency Virus) and SARS (Severe Acute Respiratory Syndromes). 
+
+1. Ad hoc abbreviations – These abbreviations are used on more localized cases and are usually specific to the user’s own notations or context. For example, a physician may abbreviate hypertension as HTN. 
 
 Traditionally, acronym expansion is used to reconstruct the meaning of these abbreviated terms. This is imperative to reproduce the original intended meanings of the user. In the medical field this is exceptionally critical to maintain universal understanding amongst all parties. While a dictionary approach may satisfy a majority of standard abbreviations, ad hoc acronyms present a problem for this method. 
 
