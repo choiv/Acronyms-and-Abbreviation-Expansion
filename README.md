@@ -3,7 +3,8 @@ This repository explores potential new ways to restore acronyms past the convent
 
 
 ## Contents
-
+1. **Related Work** - directory containing related work (papers, articles, journals)
+1. **README.md** - contains content of repository and background on the topic 
 
 ## Background Information
 Throughout the development of modern day language, acronyms have been coined and used to shorten commonly used text-based word sequences. By definition acronyms are an abbreviation formed from the initial letters of other words and pronounced as a word. A growing concern presents itself in the medical industry as acronyms are encouraged due to volatile time pressure. Other constraints such as character limitation in databases also play a role in encouraging the use of acronyms. 
