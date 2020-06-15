@@ -26,3 +26,17 @@ This basic approach falls short when either:
 Ex: MODS can mean either Multiple Organ Dysfunction Syndrome or short for modest. 
 
 1. The abbreviation has multiple words with similar semantics.
+
+
+### LMAAE (Language Model-based Automated Abbreviation Expansion) Approach
+Du et al. proposed a three step procedure LMAAE to tackle the existing problems of the LCS approach. 
+
+1. Partitioning: the abbreviated word is partitioned into several blocks with each block in correspondence with a word in the phrase. In general the algorithm creates 2^n partitions and reduces them later on. In short the three parts consist of: 
+
+1. Expansion and filter: For each block, any words that follows LCS rules will create the expansion block set. The expansion and the abbreviation are thrown into a Cartesian product. We apply the prefix abbreviation rule (abbreviations consist of the prefixes of the key words of the phrase) to reduce the search space.  For those abbreviations that do not follow this rule, a language model is used to evaluate and search through each sequence to further reduce the expansion. 
+
+1. Cluster: The expansion sets are put through a mean-shift-clustering algorithm to cluster results and reduce redundant expansions.  
+
+
+[More details on LMAAE approach](https://github.com/choiv/Acronyms-and-Abbreviation-Expansion/blob/master/Related%20Work/FGCSbiomedicaldataanalysis.pdf). 
+
