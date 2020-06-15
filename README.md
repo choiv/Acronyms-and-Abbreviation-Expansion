@@ -28,6 +28,7 @@ Ex: MODS can mean either Multiple Organ Dysfunction Syndrome or short for modest
 
 1. The abbreviation has multiple words with similar semantics.
 
+We have included a simple sample code for LCS [here](https://github.com/choiv/Acronyms-and-Abbreviation-Expansion/tree/master/Sample_LCS).
 
 ### LMAAE (Language Model-based Automated Abbreviation Expansion) Approach
 Du et al. proposed a three step procedure LMAAE to tackle the existing problems of the LCS approach. 
