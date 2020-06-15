@@ -4,6 +4,7 @@ This repository explores potential new ways to restore acronyms past the convent
 
 ## Contents
 1. **Related Work** - directory containing related work (papers, articles, journals)
+1. **Sample_LCS** - directory containing source code for LCS implementation and a sample text file to run it with
 1. **README.md** - contains content of repository and background on the topic 
 
 ## Background Information
