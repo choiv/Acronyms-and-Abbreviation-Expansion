@@ -16,7 +16,7 @@ A major problem then presents itself as an issue of the reinterpretation of acro
 
 1. **Ad hoc abbreviations** – These abbreviations are used on more localized cases and are usually specific to the user’s own notations or context. For example, a physician may abbreviate hypertension as HTN. 
 
-Traditionally, acronym expansion is used to reconstruct the meaning of these abbreviated terms. This is imperative to reproduce the original intended meanings of the user. In the medical field this is exceptionally critical to maintain universal understanding amongst all parties. While a dictionary approach may satisfy a majority of standard abbreviations, ad hoc acronyms present a problem for this method. 
+Traditionally, acronym expansion is used to reconstruct the meaning of these abbreviated terms. This is imperative to reproduce the original intended meanings of the user. In general, a dictionary search or match can cover the standard abbreivations, but fail against ad hoc abbreviations. In the medical field this is exceptionally critical to maintain universal understanding amongst all parties. While a dictionary approach may satisfy a majority of standard abbreviations, ad hoc acronyms present a problem for this method. 
 
 ### LCS (Least Common Substring) Approach 
 One of the methods used to reconstruct acronyms is through Least Common Substrings. By nature, most acronyms follow a rule which utilizes the first letter of each word as an abbreviated letter. In the case of Least Common Substring, we abbreviate it by LCS. LCS’s basic criteria is to look for certain characters in words in the original order that can be candidates for expansion. In other words, it looks for a substring that contains the abbreviated letters.  
