@@ -6,6 +6,7 @@
 
 # Requirements:
     # 1. Corpus/Dictionary of synonyms: https://github.com/zaibacu/thesaurus
+        # json parser 
     # 2. BERT model
     # 3. Find/create corpus to mask and test
 
@@ -33,6 +34,13 @@
 
 
 # Alg 3: Acronym_score
+    # Considerations: 
+        # BERT outputs ordered list of words descending in likelihood
+            # implies - synonyms outputted should have a likelihood ratio as well
+        # prefixes and starting letters should be considered
+        # calculate permutations 
 
+
+# finally calculate how accurate predicted expansions are to the masked expansions
 
 
