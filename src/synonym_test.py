@@ -3,6 +3,7 @@
 # Authors: Vince Sing Choi and Piyush Puranik
 
 # Synonym Test
+# en_thesarus.jsonl contains json line file with 169001 entries of words structured in: word, synonym, pos, key
 
 import jsonlines
 
