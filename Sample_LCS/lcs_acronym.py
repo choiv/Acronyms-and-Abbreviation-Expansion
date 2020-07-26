@@ -1,6 +1,7 @@
 # (Vince) Sing Choi
 # Finds all acroynms of a passage and creates a dictinoary for their definitions
 
+''' modified for py3 '''
 #imports 
 import numpy as np
 import sys
@@ -80,7 +81,7 @@ try:
 except IOError :
 	print('I cannot read in this file')
 
-print passage
+print (passage)
 #Here passage contains the input data file. passage[0][0] refers to the first line, first word 
 
 # local variables for keeping track of leaders, acroynms and definitions

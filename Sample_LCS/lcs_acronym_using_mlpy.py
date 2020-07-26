@@ -25,16 +25,16 @@ filename = sys.argv[1]
 try:
     f = open("stopwords","r")
 except IOError:
-    print "Cannot find stopwords file"
+    print ("Cannot find stopwords file")
 stopwords = f.read().splitlines()
-print "Stopwords loaded from file\n"
+print ("Stopwords loaded from file\n")
 
 #Loading Text File
-print "<",filename,">"
+print ("<",filename,">")
 try:
     f = open(filename, "r")
 except IOError:
-    print "Cannot open this file!"
+    print ("Cannot open this file!")
 text = f.readlines()
 
 #Split line into words
@@ -60,11 +60,11 @@ for index, acronym in enumerate(acronym_list):
     printacronym = ''.join(chr(c).upper() for c in acronym_split)
     printfull = []
     word_path = path[0]
-    print word_path
+    print (word_path)
     printfull = [word for word in word_window[word_path[0]:word_path[-1] + 1]]
     printfull = ' '.join(printfull)
     x.add_row([printacronym,printfull])
-print x
+print (x)
        
 #print acronym_list
 #print acronym_indices
