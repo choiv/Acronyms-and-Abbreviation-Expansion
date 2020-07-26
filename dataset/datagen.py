@@ -15,15 +15,25 @@ import wikipedia
 wiki_wiki = wikipediaapi.Wikipedia(language ='en', extract_format=wikipediaapi.ExtractFormat.WIKI)
 
 # Define number of pages to be randomly generated
-generate = 9000
+generate = 1
 
 
 # Randomly generate pages
 wiki_pages = wikipedia.random(pages=generate)
 for i in range(generate):
     current_page = wiki_wiki.page(wiki_pages[i])
+    current_page = wiki_wiki.page("Mohamed_Boudia")
     print ("Page - Exists: %s" % current_page.exists()) 
-    file_path = (str(current_page.title) + ".txt") 
+    title = list(str(current_page.title))
+    
+    keywords = ["/", "<", ">", ":", "|", "\"", "?", "*", " "]
+    # replace symbols for windows 
+    for i in range(len(title)):
+        if title[i] in keywords: 
+            title[i]= "_"
+        
+    
+    file_path = (''.join(title)+ ".txt") 
     if path.exists(file_path):
         print("file already exists")
     else: 

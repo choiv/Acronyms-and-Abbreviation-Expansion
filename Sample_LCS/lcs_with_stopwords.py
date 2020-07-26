@@ -86,7 +86,7 @@ except IOError():
 #-----------------------------------------------
 
 if path.exists(datafile):
-    print("file already exists")
+    print("file exists")
 
 # open datafile and store into a list
 try: 
@@ -148,7 +148,8 @@ for i in range(numwords):
             isacronym = False
             break
 
-    if(isacronym):
+    if(isacronym and passage[i] not in acronym):
+        print("new acronym: " + str(passage[i]) + " found")
         acronym.append(passage[i])
         wordindex.append(wordcount)
     isacronym = True
@@ -232,10 +233,10 @@ for k in range(len(wordindex)):
 			for i in range(temp3[-1], temp3[0]+1):
 				somestring = passage[wordindex[k] + i]
 				tempdef.append(somestring)
-		else:
-			for i in range(temp3[-1], temp3[0]+1):
-				somestring = passage[wordindex[k] + i]
-				tempdef.append(somestring)
+		#else:
+		#	for i in range(temp3[-1], temp3[0]+1):
+		#		somestring = passage[wordindex[k] + i]
+		#		tempdef.append(somestring)
 
 		tempdef2 = " ".join(map(str, tempdef))
 		size = len(tempdef)
