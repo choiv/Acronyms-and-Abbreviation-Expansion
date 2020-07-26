@@ -15,7 +15,7 @@ import wikipedia
 wiki_wiki = wikipediaapi.Wikipedia(language ='en', extract_format=wikipediaapi.ExtractFormat.WIKI)
 
 # Define number of pages to be randomly generated
-generate = 10000
+generate = 9000
 
 
 # Randomly generate pages
@@ -30,9 +30,13 @@ for i in range(generate):
         # print("file does not exists, building document")
         # acronym_detection(current_page.text) :: find acronyms in passage 
         # convert to json file for q/a model
-        f = open(str(file_path), "w", encoding="utf-8" )
-        f.write(current_page.text)
-        f.close()
+        try:
+            f = open(str(file_path), "w", encoding="utf-8" )
+            f.write(current_page.text)
+            f.close()
+        except:
+            print("Unable to create file for writing. Skipped.")
+            i -= 1
 
 # Test page
     # page_py = wiki_wiki.page('Python_(programming_language)')
