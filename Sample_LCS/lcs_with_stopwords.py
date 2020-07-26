@@ -89,15 +89,20 @@ if path.exists(datafile):
     print("file exists")
 
 # open datafile and store into a list
-try: 
-	with open(datafile, 'r') as data:
-		for word in data:
-			word = word.replace("(" , "")
-			word = word.replace(")" , "")
-			word = word.replace("\n", " ")
-			passage.extend(word.strip().split(' '))
-except IOError :
-	print('I cannot read in this file')
+
+try:
+    with open(datafile, 'r') as data: 
+        for word in data: 
+            word = word.replace("(", "")
+            word = word.replace(")", "")
+            word = word.replace("\n", "")
+            word = word.replace(".", "")
+            word = word.replace("?", "")
+            word = word.replace("!", "")
+            passage.extend(word.strip().split(' '))
+except IOError:
+    print("Could not open file")
+
 
 # print (passage)
 #Here passage contains the input data file. passage[0][0] refers to the first line, first word 
