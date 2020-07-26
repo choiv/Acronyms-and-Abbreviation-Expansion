@@ -36,7 +36,6 @@ for i in range(generate):
             f.close()
         except:
             print("Unable to create file for writing. Skipped.")
-            i -= 1
 
 # Test page
     # page_py = wiki_wiki.page('Python_(programming_language)')
