@@ -3,8 +3,9 @@
 
 ''' modified with stopwords for py3 '''
 #imports 
-import numpy as np
+
 import sys
+from os import path
 
 #FindLCS takes in 2 arrays a, d which contain a: the acroynm -
 # and d: the leaders of the possible candidates -
@@ -84,6 +85,9 @@ except IOError():
     print ("Unable to read stopword.txt")
 #-----------------------------------------------
 
+if path.exists(datafile):
+    print("file already exists")
+
 # open datafile and store into a list
 try: 
 	with open(datafile, 'r') as data:
@@ -141,7 +145,7 @@ for i in range(numwords):
             break
         
         if (passage[i][j].isdigit()):
-            acronym = False
+            isacronym = False
             break
 
     if(isacronym):
