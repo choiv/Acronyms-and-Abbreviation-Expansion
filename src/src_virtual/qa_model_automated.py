@@ -14,9 +14,19 @@ model = TFBertForQuestionAnswering.from_pretrained("bert-large-uncased-whole-wor
 
 
 # Code to traverse directory of test datasets
-directory = '/data'
-for filename in os.listdri(directory): 
-    qfile = fil
+# MAKE SURE TO CHANGE DIRECTORY
+
+dataset_dir = "C:/Users/Admin/Desktop/Acronyms-and-Abbreviation-Expansion/dataset/datagen_p_output"
+answer_dir =  "C:/Users/Admin/Desktop/Acronyms-and-Abbreviation-Expansion/dataset/answer_output/"
+question_dir = "C:/Users/Admin/Desktop/Acronyms-and-Abbreviation-Expansion/dataset/question_output/"
+
+answer_file  = ""
+question_file = ""
+
+#directory = '/dataset/datagen_output'
+
+file_list = [] # dataset 
+y_predict = []
 
 
 # Code to traverse directory of questions
@@ -24,19 +34,46 @@ for filename in os.listdri(directory):
     # load file and dump each line
     # figure out how many questions (acronyms) are needed to be found
     
+print ("Getting file listing....")
+for root, dirs, files in os.walk(dataset_dir):
+    for fname in files:
+        # print("file name :" + str(fname))
+        current_file = "{}{}{}".format(os.path.abspath(root), os.path.sep, fname)
+        file_list.append(current_file)
 
 
+for file in file_list:        
+    text = open(file,"r").read()
+    basename = os.path.basename(file)
+    basename = basename.replace(".txt", "")
+    
+    # formats the directory to find the q/a files
+    answer_file = answer_dir + basename + "_answer.txt"
+    question_file = question_dir + basename + "_question.txt"
+    
+    answer = open(answer_file, "r")
+    question = open(question_file, "r")
+    
+    question_lines = question.readlines()
+    answer_lines = answer.readlines()
+    
+    questions = [] 
+    answers = [] 
+    
+    # parse each question/answer and store in a list to measure later
+    for line in question_lines:
+        questions.append(line.replace("\n", ""))
+    for line in answer_lines:
+        answers.append(line.replace("\n", ""))
+        
+    qnum = len(questions)
+    for i in range(qnum):
+        question = questions[i]
+        input_dict = tokenizer(question, text, return_tensors='tf')
+        start_scores, end_scores = model(input_dict)
 
+        all_tokens = tokenizer.convert_ids_to_tokens(input_dict["input_ids"].numpy()[0])
+        answer = ' '.join(all_tokens[tf.math.argmax(start_scores, 1)[0] : tf.math.argmax(end_scores, 1)[0]+1])
 
+        print(str(question) + " \nAnswer: " + str(answer))
 
-# question, text = "Who was Jim Henson?", "Jim Henson was a nice puppet"
-
-
-# question, text = "What does PFLP mean? ", "Mohamed Boudia (24 February 1932 – 28 June 1973) was an Algerian poet and member of Popular Front for the Liberation of Palestine (PFLP). He was assassinated in a state terrorist attack in Paris by a car bomb placed under his seat. His assassination was carried out by Mossad agents as part of the Operation Wrath of God. At the time of his assassination, Boudia was the Chief of PFLP operations in Europe. Boudia was replaced by Carlos the Jackal.Boudia had been a participant in the Algerian War, during which he had been jailed for an attack on a petrol depot in southern France. The end of the war and Algerian independence in 1962 led to his release, having spent three years in prison. Boudia was a playwright, and after independence became director of Algeria's national theatre. He fled to France after Houari Boumediène seized power in June 1965. He ran a theatre in Paris, whilst beginning to work with figures such as Carlos the Jackal. == References ==" 
-# input_dict = tokenizer(question, text, return_tensors='tf')
-# start_scores, end_scores = model(input_dict)
-
-# all_tokens = tokenizer.convert_ids_to_tokens(input_dict["input_ids"].numpy()[0])
-# answer = ' '.join(all_tokens[tf.math.argmax(start_scores, 1)[0] : tf.math.argmax(end_scores, 1)[0]+1])
-
-# print(str(question) + " \nAnswer: " + str(answer)) 
