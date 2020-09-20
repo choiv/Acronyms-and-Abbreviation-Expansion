@@ -57,8 +57,8 @@ if __name__ == "__main__":
         
         wiki_pages = wikipedia.random(pages=generate)
         for i in range(generate):
-            # current_page = wiki_wiki.page(wiki_pages[i])
-            current_page = wiki_wiki.page("Mohamed_Boudia")    
+            current_page = wiki_wiki.page(wiki_pages[i])
+            # current_page = wiki_wiki.page("Mohamed_Boudia")    
             print ("Page ", counter+1 ," of ", total_pages)
             counter += 1
             title = list(str(current_page.title))
