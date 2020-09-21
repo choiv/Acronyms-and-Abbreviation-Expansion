@@ -8,6 +8,7 @@ Find acronyms in a set of txt files.
 import os
 import sys
 import acronym
+import acronym_edited as ac
 
 def cleanLine(line):
     new_line = line
@@ -38,7 +39,7 @@ except IOError():
     print ("Unable to read stopword.txt")
 
 # Insert all files from the generated data set into a list
-datapath = "datagen_output/"
+datapath = "datagen_output_test/"
 datalist = []
 for root, dirs, files in os.walk(datapath):
     for fname in files:
@@ -54,7 +55,10 @@ for data_file in datalist:
     with open(data_file, "r", encoding='utf-8') as data:
         for line in data.readlines():
             line = cleanLine(line)      # Removes symbols
-            not_empty = acronym.findacronym(stopwords, line)
+            # not_empty = acronym.findacronym(stopwords, line)
+            not_empty = ac.findacronym(stopwords, line)
             definition.append(not_empty)
+            
+
 
 
