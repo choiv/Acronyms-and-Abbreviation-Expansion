@@ -21,9 +21,9 @@ model = TFBertForQuestionAnswering.from_pretrained("bert-large-uncased-whole-wor
 #answer_dir =  "C:/Users/Admin/Desktop/Acronyms-and-Abbreviation-Expansion/dataset/answer_output/"
 #question_dir = "C:/Users/Admin/Desktop/Acronyms-and-Abbreviation-Expansion/dataset/question_output/"
 
-dataset_dir = "C:\\Users\\Admin\\Desktop\\virtual\\smalldata_output\\"
-answer_dir = "C:\\Users\Admin\\Desktop\\virtual\\answer_output\\"
-question_dir = "C:\\Users\Admin\\Desktop\\virtual\\question_output\\" 
+dataset_dir = "E:\\PythonProjects\\acronym-dataset\\smalldata_output\\"
+answer_dir = "E:\\PythonProjects\\acronym-dataset\\answer_output\\"
+question_dir = "E:\\PythonProjects\\acronym-dataset\\question_output\\" 
 
 answer_file  = ""
 question_file = ""
@@ -85,9 +85,11 @@ for file in file_list:
                 answer = ' '.join(all_tokens[tf.math.argmax(start_scores, 1)[0] : tf.math.argmax(end_scores, 1)[0]+1])
                 target = answers[i]
         
-                print(str(question) + " \nAnswer: " + str(answer))
-                print("target answer: " + target)
                 unmasked = answer.replace("#", "")
                 unmasked = unmasked.replace(".", "")
+                unmasked = unmasked.replace(",", "")
+                unmasked = unmasked.replace("-", "")
+                print(str(question) + " \nAnswer: " + str(unmasked))
+                print("target answer: " + target)
                 
                 print(jellyfish.jaro_distance(target, unmasked))
