@@ -4,8 +4,8 @@ import os
 import os.path
 
 
-dataset_dir = "C:\\Users\\Admin\\Desktop\\virtual\\datagen_output\\"
-smalldata_dir = "C:\\Users\\Admin\\Desktop\\virtual\\smalldata_output\\"
+dataset_dir = "E:\\PythonProjects\\acronym-dataset\\datagen_output\\"
+smalldata_dir = "E:\\PythonProjects\\acronym-dataset\\smalldata_output\\"
 
 
 #directory = '/dataset/datagen_output'

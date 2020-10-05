@@ -6,19 +6,19 @@ import re
 # doc_path = "C:\\Users\\Rihanna\\Desktop\\Intro. to CL\\final project\\CL_Final_Project_830597032\\Manual Count statistics\\txt files\\"
 # doc_path = "E:\\PythonProjects\\Acronym_detection\\text_files\\"
 #doc_path = "C:\\Users\Admin\\Desktop\\Acronyms-and-Abbreviation-Expansion\dataset\\text_files\\"
-doc_path = "C:\\Users\\Admin\\Desktop\\virtual\\smalldata_output\\"
+doc_path = "E:\\PythonProjects\\acronym-dataset\\smalldata_output\\"
 
 
 # dataset_path = "C:\\Users\\Rihanna\\Desktop\\Intro. to CL\\final project\\CL_Final_Project_830597032\\Manual Count statistics\\dataset_acr_exp.csv"
 #dataset_path = "E:\\PythonProjects\\Acronym_detection\\dataset_acr_exp.csv"
-dataset_path = "C:\\Users\\Admin\\Desktop\\virtual\\dataset_acr_exp.csv" 
+dataset_path = "E:\\PythonProjects\\acronym-dataset\\dataset_acr_exp.csv" 
 dataset_csv_file = open(dataset_path,"w")
 
 
 
 # output_file = open("C:\\Users\\Rihanna\\PycharmProjects\\CL_final_project\\output.txt", 'w', encoding='utf-8')
 #output_file = open("E:\\PythonProjects\\Acronym_detection\\output.txt", 'w', encoding='utf-8')
-output_file = open("C:\\Users\\Admin\\Desktop\\Acronyms-and-Abbreviation-Expansion\\dataset\\New folder\\output.txt" , 'w', encoding='utf-8')
+output_file = open("E:\\PythonProjects\\acronym-dataset\\output.txt" , 'w', encoding='utf-8')
 
 acronyms_list_total = []    # all detected acronyms will be appended to this list
 expansion_list_total = []   # all detected expansions will be appended to this list

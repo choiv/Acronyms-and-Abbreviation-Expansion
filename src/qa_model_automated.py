@@ -84,11 +84,13 @@ for file in file_list:
                 all_tokens = tokenizer.convert_ids_to_tokens(input_dict["input_ids"].numpy()[0])
                 answer = ' '.join(all_tokens[tf.math.argmax(start_scores, 1)[0] : tf.math.argmax(end_scores, 1)[0]+1])
                 target = answers[i]
+                target = target.lower()
         
                 unmasked = answer.replace("#", "")
                 unmasked = unmasked.replace(".", "")
                 unmasked = unmasked.replace(",", "")
                 unmasked = unmasked.replace("-", "")
+                unmasked = unmasked.lower()
                 print(str(question) + " \nAnswer: " + str(unmasked))
                 print("target answer: " + target)
                 
