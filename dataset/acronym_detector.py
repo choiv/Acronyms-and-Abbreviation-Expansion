@@ -6,12 +6,12 @@ import re
 # doc_path = "C:\\Users\\Rihanna\\Desktop\\Intro. to CL\\final project\\CL_Final_Project_830597032\\Manual Count statistics\\txt files\\"
 # doc_path = "E:\\PythonProjects\\Acronym_detection\\text_files\\"
 #doc_path = "C:\\Users\Admin\\Desktop\\Acronyms-and-Abbreviation-Expansion\dataset\\text_files\\"
-doc_path = "C:\\Users\Admin\\Desktop\\Acronyms-and-Abbreviation-Expansion\dataset\\datagen_output\\"
+doc_path = "C:\\Users\\Admin\\Desktop\\virtual\\smalldata_output\\"
 
 
 # dataset_path = "C:\\Users\\Rihanna\\Desktop\\Intro. to CL\\final project\\CL_Final_Project_830597032\\Manual Count statistics\\dataset_acr_exp.csv"
 #dataset_path = "E:\\PythonProjects\\Acronym_detection\\dataset_acr_exp.csv"
-dataset_path = "C:\\Users\\Admin\\Desktop\\Acronyms-and-Abbreviation-Expansion\\dataset\\answer_output\\dataset_acr_exp3.csv" 
+dataset_path = "C:\\Users\\Admin\\Desktop\\virtual\\dataset_acr_exp.csv" 
 dataset_csv_file = open(dataset_path,"w")
 
 
@@ -165,23 +165,26 @@ def pattern_one(list_of_words):
             # acronym_suspect_dehyphenated =""
 
 
-            for j in range(word_index - len_of_acronym_suspect, word_index):
-                expansion_suspect = expansion_suspect + " " + list_of_words[j]
-                # we don't need the first space
-                expansion_suspect = re.sub(r"^\s", r"", expansion_suspect)
-                # expansion_suspect = re.sub(r"[\-]", r" ", expansion_suspect)
-                # remove dash if present
-                expansion_suspect_dehyphenated = ""
-                expansion_suspect_dash_removed = re.sub(r"[\-]", r" ", expansion_suspect)
-                if len(expansion_suspect_dash_removed) > len(expansion_suspect):
-                    list_of_words_dash_removed = expansion_suspect_dash_removed.split()
-                    for t in range((len(expansion_suspect_dash_removed) - len(acronym_suspect)),
-                                   (len(expansion_suspect_dash_removed))):
-                        expansion_suspect_dehyphenated += list_of_words_dash_removed[t]
-                        # acronym_suspect_dehyphenated = re.sub("\-","",acronym_suspect)
-
-                initials_of_expansion_suspect = make_acronym(expansion_suspect)
-                initials_of_expansion_suspect_dehyphenated = make_acronym(expansion_suspect_dehyphenated)
+# ADDED THIS CATCH 
+            print(str(word_index - len_of_acronym_suspect))
+            if (word_index - len_of_acronym_suspect >= 0):
+                for j in range(word_index - len_of_acronym_suspect, word_index):
+                    expansion_suspect = expansion_suspect + " " + list_of_words[j]
+                    # we don't need the first space
+                    expansion_suspect = re.sub(r"^\s", r"", expansion_suspect)
+                    # expansion_suspect = re.sub(r"[\-]", r" ", expansion_suspect)
+                    # remove dash if present
+                    expansion_suspect_dehyphenated = ""
+                    expansion_suspect_dash_removed = re.sub(r"[\-]", r" ", expansion_suspect)
+                    if len(expansion_suspect_dash_removed) > len(expansion_suspect):
+                        list_of_words_dash_removed = expansion_suspect_dash_removed.split()
+                        for t in range((len(expansion_suspect_dash_removed) - len(acronym_suspect)),
+                                       (len(expansion_suspect_dash_removed))):
+                            expansion_suspect_dehyphenated += list_of_words_dash_removed[t]
+                            # acronym_suspect_dehyphenated = re.sub("\-","",acronym_suspect)
+    
+                    initials_of_expansion_suspect = make_acronym(expansion_suspect)
+                    initials_of_expansion_suspect_dehyphenated = make_acronym(expansion_suspect_dehyphenated)
 
             ###### detecting nested expansions:##################################################
             # nested expansions are the ones where an expansion includes an acronym which exists in
@@ -208,90 +211,92 @@ def pattern_one(list_of_words):
                     acronym_suspect_nested = re.sub(slice, first_letter_of_slice, acronym_suspect)
                     len_of_acronym_suspect_nested = len(acronym_suspect_nested)
 
-            for j in range(word_index - len_of_acronym_suspect_nested, word_index):
-                expansion_suspect_nested = expansion_suspect_nested + " " + list_of_words[j]
-                # we don't need the first space
-                expansion_suspect_nested = re.sub(r"^\s", r"", expansion_suspect_nested)
-                # expansion_suspect = re.sub(r"[\-]", r" ", expansion_suspect)
-
-                # expansion_acronym = expansion_acronym + list_of_words[j][0]
-                initials_of_expansion_suspect_nested = make_acronym(expansion_suspect_nested)
-                ### end of detecting nested expansions###########################################
-
-            for j in range(word_index - len_of_acronym_suspect_channel, word_index):
-                expansion_suspect_channel = expansion_suspect_channel + " " + list_of_words[j]
-                # we don't need the first space
-                expansion_suspect_channel = re.sub(r"^\s", r"", expansion_suspect_channel)
-                # remove dash if present
-                expansion_suspect_channel = re.sub(r"[\-]", r" ", expansion_suspect_channel)
-
-                # expansion_acronym = expansion_acronym + list_of_words[j][0]
-                initials_of_expansion_suspect_channel = make_acronym(expansion_suspect_channel)
-
-            for j in range(word_index - len_of_acronym_suspect_identification, word_index):
-                expansion_suspect_identification = expansion_suspect_identification + " " + list_of_words[j]
-                # we don't need the first space
-                expansion_suspect_identification = re.sub(r"^\s", r"", expansion_suspect_identification)
-                # remove dash if present
-                expansion_suspect_identification = re.sub(r"[\-]", r" ", expansion_suspect_identification)
-
-                # expansion_acronym = expansion_acronym + list_of_words[j][0]
-                initials_of_expansion_suspect_identification = make_acronym(expansion_suspect_identification)
-
-            for j in range(word_index - len_of_acronym_suspect_television, word_index):
-                expansion_suspect_television = expansion_suspect_television + " " + list_of_words[j]
-                # we don't need the first space
-                expansion_suspect_television = re.sub(r"^\s", r"", expansion_suspect_television)
-                # remove dash if present
-                expansion_suspect_television = re.sub(r"[\-]", r" ", expansion_suspect_television)
-
-                # expansion_acronym = expansion_acronym + list_of_words[j][0]
-                initials_of_expansion_suspect_television = make_acronym(expansion_suspect_television)
-
-            for j in range(word_index - len_of_acronym_suspect_gateway, word_index):
-                expansion_suspect_gateway = expansion_suspect_gateway + " " + list_of_words[j]
-                # we don't need the first space
-                expansion_suspect_gateway = re.sub(r"^\s", r"", expansion_suspect_gateway)
-                # remove dash if present
-                expansion_suspect_gateway = re.sub(r"[\-]", r" ", expansion_suspect_gateway)
-
-                # expansion_acronym = expansion_acronym + list_of_words[j][0]
-                initials_of_expansion_suspect_gateway = make_acronym(expansion_suspect_gateway)
-
-            for j in range(word_index - len_of_acronym_suspect_wimax, word_index):
-                expansion_suspect_wimax = expansion_suspect_wimax + " " + list_of_words[j]
-                # we don't need the first space
-                expansion_suspect_wimax = re.sub(r"^\s", r"", expansion_suspect_wimax)
-                # remove dash if present
-                expansion_suspect_wimax = re.sub(r"[\-]", r" ", expansion_suspect_wimax)
-
-                # expansion_acronym = expansion_acronym + list_of_words[j][0]
-
-                initials_of_expansion_suspect_wimax = make_acronym(expansion_suspect_wimax)
-
-            for j in range(word_index - len_of_acronym_suspect_physical_layer, word_index):
-                expansion_suspect_physical_layer = expansion_suspect_physical_layer + " " + list_of_words[j]
-                # we don't need the first space
-                expansion_suspect_physical_layer = re.sub(r"^\s", r"", expansion_suspect_physical_layer)
-                # remove dash if present
-                expansion_suspect_physical_layer = re.sub(r"[\-]", r" ", expansion_suspect_physical_layer)
-
-                # expansion_acronym = expansion_acronym + list_of_words[j][0]
-
-                initials_of_expansion_suspect_physical_layer = make_acronym(expansion_suspect_physical_layer)
-
-            for j in range(word_index - len_of_acronym_suspect_wlan, word_index):
-                expansion_suspect_wlan = expansion_suspect_wlan + " " + list_of_words[j]
-
-                # we don't need the first space
-                expansion_suspect_wlan = re.sub(r"^\s", r"", expansion_suspect_wlan)
-
-                # remove dash if present
-                expansion_suspect_wlan = re.sub(r"[\-]", r" ", expansion_suspect_wlan)
-
-                # expansion_acronym = expansion_acronym + list_of_words[j][0]
-                # initials_of_expansion_suspect_wlan = make_acronym(expansion_suspect_wlan)
-                initials_of_expansion_suspect_wlan = make_acronym(expansion_suspect_wlan)
+# ADDED THIS CATCH
+            if (word_index - len_of_acronym_suspect >= 0):
+                for j in range(word_index - len_of_acronym_suspect_nested, word_index):
+                    expansion_suspect_nested = expansion_suspect_nested + " " + list_of_words[j]
+                    # we don't need the first space
+                    expansion_suspect_nested = re.sub(r"^\s", r"", expansion_suspect_nested)
+                    # expansion_suspect = re.sub(r"[\-]", r" ", expansion_suspect)
+    
+                    # expansion_acronym = expansion_acronym + list_of_words[j][0]
+                    initials_of_expansion_suspect_nested = make_acronym(expansion_suspect_nested)
+                    ### end of detecting nested expansions###########################################
+    
+                for j in range(word_index - len_of_acronym_suspect_channel, word_index):
+                    expansion_suspect_channel = expansion_suspect_channel + " " + list_of_words[j]
+                    # we don't need the first space
+                    expansion_suspect_channel = re.sub(r"^\s", r"", expansion_suspect_channel)
+                    # remove dash if present
+                    expansion_suspect_channel = re.sub(r"[\-]", r" ", expansion_suspect_channel)
+    
+                    # expansion_acronym = expansion_acronym + list_of_words[j][0]
+                    initials_of_expansion_suspect_channel = make_acronym(expansion_suspect_channel)
+    
+                for j in range(word_index - len_of_acronym_suspect_identification, word_index):
+                    expansion_suspect_identification = expansion_suspect_identification + " " + list_of_words[j]
+                    # we don't need the first space
+                    expansion_suspect_identification = re.sub(r"^\s", r"", expansion_suspect_identification)
+                    # remove dash if present
+                    expansion_suspect_identification = re.sub(r"[\-]", r" ", expansion_suspect_identification)
+    
+                    # expansion_acronym = expansion_acronym + list_of_words[j][0]
+                    initials_of_expansion_suspect_identification = make_acronym(expansion_suspect_identification)
+    
+                for j in range(word_index - len_of_acronym_suspect_television, word_index):
+                    expansion_suspect_television = expansion_suspect_television + " " + list_of_words[j]
+                    # we don't need the first space
+                    expansion_suspect_television = re.sub(r"^\s", r"", expansion_suspect_television)
+                    # remove dash if present
+                    expansion_suspect_television = re.sub(r"[\-]", r" ", expansion_suspect_television)
+    
+                    # expansion_acronym = expansion_acronym + list_of_words[j][0]
+                    initials_of_expansion_suspect_television = make_acronym(expansion_suspect_television)
+    
+                for j in range(word_index - len_of_acronym_suspect_gateway, word_index):
+                    expansion_suspect_gateway = expansion_suspect_gateway + " " + list_of_words[j]
+                    # we don't need the first space
+                    expansion_suspect_gateway = re.sub(r"^\s", r"", expansion_suspect_gateway)
+                    # remove dash if present
+                    expansion_suspect_gateway = re.sub(r"[\-]", r" ", expansion_suspect_gateway)
+    
+                    # expansion_acronym = expansion_acronym + list_of_words[j][0]
+                    initials_of_expansion_suspect_gateway = make_acronym(expansion_suspect_gateway)
+    
+                for j in range(word_index - len_of_acronym_suspect_wimax, word_index):
+                    expansion_suspect_wimax = expansion_suspect_wimax + " " + list_of_words[j]
+                    # we don't need the first space
+                    expansion_suspect_wimax = re.sub(r"^\s", r"", expansion_suspect_wimax)
+                    # remove dash if present
+                    expansion_suspect_wimax = re.sub(r"[\-]", r" ", expansion_suspect_wimax)
+    
+                    # expansion_acronym = expansion_acronym + list_of_words[j][0]
+    
+                    initials_of_expansion_suspect_wimax = make_acronym(expansion_suspect_wimax)
+    
+                for j in range(word_index - len_of_acronym_suspect_physical_layer, word_index):
+                    expansion_suspect_physical_layer = expansion_suspect_physical_layer + " " + list_of_words[j]
+                    # we don't need the first space
+                    expansion_suspect_physical_layer = re.sub(r"^\s", r"", expansion_suspect_physical_layer)
+                    # remove dash if present
+                    expansion_suspect_physical_layer = re.sub(r"[\-]", r" ", expansion_suspect_physical_layer)
+    
+                    # expansion_acronym = expansion_acronym + list_of_words[j][0]
+    
+                    initials_of_expansion_suspect_physical_layer = make_acronym(expansion_suspect_physical_layer)
+    
+                for j in range(word_index - len_of_acronym_suspect_wlan, word_index):
+                    expansion_suspect_wlan = expansion_suspect_wlan + " " + list_of_words[j]
+    
+                    # we don't need the first space
+                    expansion_suspect_wlan = re.sub(r"^\s", r"", expansion_suspect_wlan)
+    
+                    # remove dash if present
+                    expansion_suspect_wlan = re.sub(r"[\-]", r" ", expansion_suspect_wlan)
+    
+                    # expansion_acronym = expansion_acronym + list_of_words[j][0]
+                    # initials_of_expansion_suspect_wlan = make_acronym(expansion_suspect_wlan)
+                    initials_of_expansion_suspect_wlan = make_acronym(expansion_suspect_wlan)
 
             # now we must compare the two suspects. If they match, the acronym-expansion pair
             # has been found:
@@ -363,18 +368,24 @@ def pattern_two(list_of_words):
                 len_of_acronym_suspect_p2 = len(acronym_suspect_p2)
                 expansion_suspect_p2 = ""
 
-                for j in range(i, i + len_of_acronym_suspect_p2):
-                    # expansion_component_p2 = re.sub(r"\-"," ", list_of_words[j])
-                    expansion_component_p2 = re.sub(r'\W', r"", list_of_words[j])      # remove unwanted things. non-alphanumetric and underscore
-
-                    expansion_suspect_p2 += expansion_component_p2 + " "
-                    # we don't need the first space
-                    expansion_suspect_p2 = re.sub(r"^\s", r"", expansion_suspect_p2)
-
-                    expansion_suspect_p2 = re.sub(r'[\-]', r" ", expansion_suspect_p2)
-                    # initials_of_expansion_suspect_p2 += expansion_component_p2[0]
-
-                    initials_of_expansion_suspect_p2 = make_acronym(expansion_suspect_p2)
+                print("check here")
+                print(len(list_of_words))
+                print(str(i + len_of_acronym_suspect_p2 ))
+                
+                # Added check here
+                if (i + len_of_acronym_suspect_p2 <= len(list_of_words)):
+                    for j in range(i, i + len_of_acronym_suspect_p2):
+                        # expansion_component_p2 = re.sub(r"\-"," ", list_of_words[j])
+                        expansion_component_p2 = re.sub(r'\W', r"", list_of_words[j])      # remove unwanted things. non-alphanumetric and underscore
+    
+                        expansion_suspect_p2 += expansion_component_p2 + " "
+                        # we don't need the first space
+                        expansion_suspect_p2 = re.sub(r"^\s", r"", expansion_suspect_p2)
+    
+                        expansion_suspect_p2 = re.sub(r'[\-]', r" ", expansion_suspect_p2)
+                        # initials_of_expansion_suspect_p2 += expansion_component_p2[0]
+    
+                        initials_of_expansion_suspect_p2 = make_acronym(expansion_suspect_p2)
 
                 if initials_of_expansion_suspect_p2.upper() == acronym_suspect_p2.upper():   # if the initials of the expansion suspect matches the acronym suspect, we have
                     acronyms_list_total.append(acronym_suspect_p2.upper() + ",")             # deteceted a pair of acronym and expansion
@@ -427,7 +438,7 @@ def main():
     doc_count = 0
     # search the path and for each file, perform the whole acronym detection process
     for filename in filename_list:
-        print(doc_count)
+        #print(doc_count)
         print(filename)
         file_path = doc_path+filename
         document = open(file_path,'r', encoding='utf-8')

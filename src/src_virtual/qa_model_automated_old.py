@@ -7,8 +7,7 @@ from transformers import BertTokenizer
 from transformers.modeling_tf_bert import TFBertForQuestionAnswering
 import tensorflow as tf
 import os
-import os.path
-import jellyfish
+
 # Define Model parameters 
 tokenizer = BertTokenizer.from_pretrained("bert-large-uncased-whole-word-masking-finetuned-squad")
 model = TFBertForQuestionAnswering.from_pretrained("bert-large-uncased-whole-word-masking-finetuned-squad")
@@ -21,7 +20,7 @@ model = TFBertForQuestionAnswering.from_pretrained("bert-large-uncased-whole-wor
 #answer_dir =  "C:/Users/Admin/Desktop/Acronyms-and-Abbreviation-Expansion/dataset/answer_output/"
 #question_dir = "C:/Users/Admin/Desktop/Acronyms-and-Abbreviation-Expansion/dataset/question_output/"
 
-dataset_dir = "C:\\Users\\Admin\\Desktop\\virtual\\smalldata_output\\"
+dataset_dir = "C:\\Users\\Admin\\Desktop\\virtual\\"
 answer_dir = "C:\\Users\Admin\\Desktop\\virtual\\answer_output\\"
 question_dir = "C:\\Users\Admin\\Desktop\\virtual\\question_output\\" 
 
@@ -48,7 +47,7 @@ for root, dirs, files in os.walk(dataset_dir):
 
 
 for file in file_list:        
-    text = open(file,"r", encoding = 'utf-8').read()
+    text = open(file,"r").read()
     basename = os.path.basename(file)
     basename = basename.replace(".txt", "")
     
@@ -56,8 +55,8 @@ for file in file_list:
     answer_file = answer_dir + basename + "_answer.txt"
     question_file = question_dir + basename + "_question.txt"
     
-    if os.path.exists(answer_file):
-        if os.path.exists(question_file):
+    if answer_file.is_file():
+        if question_file.is_file():
 
             answer = open(answer_file, "r")
             question = open(question_file, "r")
@@ -73,21 +72,15 @@ for file in file_list:
                 questions.append(line.replace("\n", ""))
             for line in answer_lines:
                 answers.append(line.replace("\n", ""))
-               
+                
             qnum = len(questions)
-
             for i in range(qnum):
-                question = str(questions[i])
-                input_dict = tokenizer(question, str(text), return_tensors='tf')
+                question = questions[i]
+                input_dict = tokenizer(question, text, return_tensors='tf')
                 start_scores, end_scores = model(input_dict)
         
                 all_tokens = tokenizer.convert_ids_to_tokens(input_dict["input_ids"].numpy()[0])
                 answer = ' '.join(all_tokens[tf.math.argmax(start_scores, 1)[0] : tf.math.argmax(end_scores, 1)[0]+1])
-                target = answers[i]
         
                 print(str(question) + " \nAnswer: " + str(answer))
-                print("target answer: " + target)
-                unmasked = answer.replace("#", "")
-                unmasked = unmasked.replace(".", "")
-                
-                print(jellyfish.jaro_distance(target, unmasked))
+
