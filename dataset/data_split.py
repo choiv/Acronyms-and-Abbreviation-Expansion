@@ -44,6 +44,7 @@ for file in file_list:
             output = open(smalldata_dir + basename + "_" + str(file_count) +".txt", "w", encoding = 'utf-8')
             output.write(temp_string)
             temp_string = ""
+            counter = 0
         temp_string += i
         temp_string += " "
         counter = counter + 1
