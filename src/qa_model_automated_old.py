@@ -9,9 +9,6 @@ import tensorflow as tf
 import os
 import os.path
 import jellyfish
-from rouge import Rouge
-
-
 # Define Model parameters 
 tokenizer = BertTokenizer.from_pretrained("bert-large-uncased-whole-word-masking-finetuned-squad")
 model = TFBertForQuestionAnswering.from_pretrained("bert-large-uncased-whole-word-masking-finetuned-squad")
@@ -24,15 +21,9 @@ model = TFBertForQuestionAnswering.from_pretrained("bert-large-uncased-whole-wor
 #answer_dir =  "C:/Users/Admin/Desktop/Acronyms-and-Abbreviation-Expansion/dataset/answer_output/"
 #question_dir = "C:/Users/Admin/Desktop/Acronyms-and-Abbreviation-Expansion/dataset/question_output/"
 
-dataset_dir = "C:\\Users\\Admin\\Desktop\\virtual\\smalldata_output\\"
-answer_dir = "C:\\Users\Admin\\Desktop\\virtual\\answer_output\\"
-question_dir = "C:\\Users\Admin\\Desktop\\virtual\\question_output\\" 
-
-
-answer_true = open("answer_true_bad.txt", "w") 
-predicted = open("predicted_bad.txt", "w") 
-
-rouge = Rouge()
+dataset_dir = "E:\\PythonProjects\\acronym-dataset\\smalldata_output\\"
+answer_dir = "E:\\PythonProjects\\acronym-dataset\\answer_output\\"
+question_dir = "E:\\PythonProjects\\acronym-dataset\\question_output\\" 
 
 answer_file  = ""
 question_file = ""
@@ -91,8 +82,7 @@ for file in file_list:
             for line in question_lines:
                 questions.append(line.replace("\n", ""))
             for line in answer_lines:
-                answer_true.write(line) 
-                answers.append(line.replace("\n", "")) 
+                answers.append(line.replace("\n", ""))
                
             qnum = len(questions)
 
@@ -112,23 +102,15 @@ for file in file_list:
                 unmasked = unmasked.replace(",", "")
                 unmasked = unmasked.replace("-", "")
                 unmasked = unmasked.lower()
-                if (not unmasked):
-                    unmaksed = "null" 
                 print(str(question) + " \nAnswer: " + str(unmasked))
                 print("target answer: " + target)
                 
-                scores = rouge.get_scores(unmasked, target)
-                print(scores)
-     
-                predicted.write(unmasked + "\n")
-                
                 score = jellyfish.jaro_distance(target, unmasked)
-                print("Jaro: " + str(score)) 
-                if (score >= epsilon8):
+                if (score >= epsilon8)
                     correct8 += 1
-                if (score >= epsilon7):
+                if (score >= epsilon7)
                     correct7 += 1
-                if (score >= epsilon5):
+                if (score >= epsilon5)
                     correct5 += 1
                     
 print ("Correct8: " + str(correct8) + " / Detected " + str(detected) + " = " + str(correct8/detected)) 
