@@ -4,42 +4,22 @@ This repository explores potential new ways to restore acronyms past the convent
 
 ## Contents
 1. **Related Work** - directory containing related work (papers, articles, journals)
-1. **Sample_LCS** - directory containing source code for LCS implementation and a sample text file to run it with
 1. **README.md** - contains content of repository and background on the topic 
+1. **dataset** - contains programs related to data generation
+1. **src**  - contains the main automated QA model program and a program to score Rouge
 
-## Background Information
-Throughout the development of modern day language, acronyms have been coined and used to shorten commonly used text-based word sequences. By definition acronyms are an abbreviation formed from the initial letters of other words and pronounced as a word. A growing concern presents itself in the medical industry as acronyms are encouraged due to volatile time pressure. Other constraints such as character limitation in databases also play a role in encouraging the use of acronyms. 
+## Disclaimer ##
+Users will have to change working directories to match their needs and download prerequisite packages such as HuggingFace, Jellybeans, Rouge and WikiAPI. 
+The version of BERT QA cannot handle non-english characters and will crash if it detects unreadable characters. 
+## Data Generation ## 
+To generate a corpus we utilize the Wikipedia API to build a collection of Wikipedia pages using **datagen.py**. We recommend creating a directory strictly to store these documents. Not every page in this collection will contain an acronym. The BERT QA Model can roughly store 500 strings in memory so we need to run the **data_split.py** to split longer datasets into multiple smaller datasets. It is possible that during this stage, an acronym or its definition becomes split. Make sure to store the split datasets into a working directory. Next change the directories for **acronym_detector.py**. This program will run through all the split datasets and create a corresponding question and answer dataset for its respective directoires. The detection algorithm is a modified version of the Azimi Method mentioned in the paper. Stop words are removed during this time in both this modified version and the original version (meaning the tagged data will be free of stop words as well). Removal of stopwords is necessary to increase the accuracy and frequency of the detection. If a dataset is provided in a csv file, there is additional code provided to handle some csv files. 
 
-A major problem then presents itself as an issue of the reinterpretation of acronyms, especially in inconsistently defined or non-universally used ones.  Acronyms can be classified into two different groups:
+Disclaimer: ensure the files do not have non-english characters. 
 
-1. **Standard abbreviations** - These abbreviations are widely accepted and generally used such as: HIV (Human Immunodeficiency Virus) and SARS (Severe Acute Respiratory Syndromes). 
+##Running the model and Evaluation##
+In the **src** folder, change the working directories of **qa_model_automated.py** and run. This program will load a trained version of BERT QA-model and take in a question file, answer file, and corresponding dataset file generated earlier. It will remove special characters or maskings before printing out a predicted answer to the acronym question as well as the tagged answer. Users can adjust the epsilon values for computing the Jaro Distance as well. The program will caculate the acceptance rate for each epsilon value. This program will also output two files to calculate the ROUGE scores. 
 
-1. **Ad hoc abbreviations** – These abbreviations are used on more localized cases and are usually specific to the user’s own notations or context. For example, a physician may abbreviate hypertension as HTN. 
-
-Traditionally, acronym expansion is used to reconstruct the meaning of these abbreviated terms. This is imperative to reproduce the original intended meanings of the user. In general, a dictionary search or match can cover the standard abbreivations, but fail against ad hoc abbreviations. In the medical field this is exceptionally critical to maintain universal understanding amongst all parties. While a dictionary approach may satisfy a majority of standard abbreviations, ad hoc acronyms present a problem for this method. 
-
-### LCS (Least Common Substring) Approach 
-One of the methods used to reconstruct acronyms is through Least Common Substrings. By nature, most acronyms follow a rule which utilizes the first letter of each word as an abbreviated letter. In the case of Least Common Substring, we abbreviate it by LCS. LCS’s basic criteria is to look for certain characters in words in the original order that can be candidates for expansion. In other words, it looks for a substring that contains the abbreviated letters.  
-This basic approach falls short when either:
-
-1. The search space is too difficult to be determined (ex: the scope of the substring and the use of the acronym are too far apart).
-
-1. The abbreviation matches multiple other expansions. 
-Ex: MODS can mean either Multiple Organ Dysfunction Syndrome or short for modest. 
-
-1. The abbreviation has multiple words with similar semantics.
-
-We have included a simple sample code for LCS [here](https://github.com/choiv/Acronyms-and-Abbreviation-Expansion/tree/master/Sample_LCS).
-
-### LMAAE (Language Model-based Automated Abbreviation Expansion) Approach
-Du et al. proposed a three step procedure LMAAE to tackle the existing problems of the LCS approach. 
-
-1. Partitioning: the abbreviated word is partitioned into several blocks with each block in correspondence with a word in the phrase. In general the algorithm creates 2^n partitions and reduces them later on. In short the three parts consist of: 
-
-1. Expansion and filter: For each block, any words that follows LCS rules will create the expansion block set. The expansion and the abbreviation are thrown into a Cartesian product. We apply the prefix abbreviation rule (abbreviations consist of the prefixes of the key words of the phrase) to reduce the search space.  For those abbreviations that do not follow this rule, a language model is used to evaluate and search through each sequence to further reduce the expansion. 
-
-1. Cluster: The expansion sets are put through a mean-shift-clustering algorithm to cluster results and reduce redundant expansions.  
+Run **rouge.py** to output the rouge scores after corresponding files have been generated. Unfortunately the pacakage will crash if it detects a null value for a definition. (This can occur if the definition is split and the BERT Model cannot give a reasonable answer to the question). 
 
 
-[More details on LMAAE approach](https://github.com/choiv/Acronyms-and-Abbreviation-Expansion/blob/master/Related%20Work/FGCSbiomedicaldataanalysis.pdf). 
 
