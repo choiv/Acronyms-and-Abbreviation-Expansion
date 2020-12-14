@@ -16,7 +16,7 @@ To generate a corpus we utilize the Wikipedia API to build a collection of Wikip
 
 Disclaimer: ensure the files do not have non-english characters. 
 
-##Running the model and Evaluation##
+## Running the model and Evaluation ##
 In the **src** folder, change the working directories of **qa_model_automated.py** and run. This program will load a trained version of BERT QA-model and take in a question file, answer file, and corresponding dataset file generated earlier. It will remove special characters or maskings before printing out a predicted answer to the acronym question as well as the tagged answer. Users can adjust the epsilon values for computing the Jaro Distance as well. The program will caculate the acceptance rate for each epsilon value. This program will also output two files to calculate the ROUGE scores. 
 
 Run **rouge.py** to output the rouge scores after corresponding files have been generated. Unfortunately the pacakage will crash if it detects a null value for a definition. (This can occur if the definition is split and the BERT Model cannot give a reasonable answer to the question). 
