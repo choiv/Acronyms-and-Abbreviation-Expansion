@@ -13,15 +13,15 @@ doc_path = "C:\\Users\Admin\\Desktop\\drug_port_extraction\\output\\"
 # dataset_path = "C:\\Users\\Rihanna\\Desktop\\Intro. to CL\\final project\\CL_Final_Project_830597032\\Manual Count statistics\\dataset_acr_exp.csv"
 #dataset_path = "E:\\PythonProjects\\Acronym_detection\\dataset_acr_exp.csv"
 #dataset_path = "E:\\PythonProjects\\acronym-dataset\\dataset_acr_exp.csv" 
-dataset_path = "C:\\Users\Admin\\Desktop\\drug_port_extraction\\"
-dataset_csv_file = open(dataset_path,"w")
+dataset_path = "C:\\Users\Admin\\Desktop\\drug_port_extraction\\dataset_drugpot.csv"
+dataset_csv_file = open(dataset_path,"w", encoding='utf-8')
 
 
 
 # output_file = open("C:\\Users\\Rihanna\\PycharmProjects\\CL_final_project\\output.txt", 'w', encoding='utf-8')
 #output_file = open("E:\\PythonProjects\\Acronym_detection\\output.txt", 'w', encoding='utf-8')
 #output_file = open("E:\\PythonProjects\\acronym-dataset\\output.txt" , 'w', encoding='utf-8')
-output_file= "C:\\Users\Admin\\Desktop\\drug_port_extraction\\output.txt", 'w', encoding='utf-8')
+output_file= open("C:\\Users\Admin\\Desktop\\drug_port_extraction\\output.txt", 'w', encoding='utf-8')
 
 
 acronyms_list_total = []    # all detected acronyms will be appended to this list
