@@ -6,7 +6,7 @@ import re
 # doc_path = "C:\\Users\\Rihanna\\Desktop\\Intro. to CL\\final project\\CL_Final_Project_830597032\\Manual Count statistics\\txt files\\"
 # doc_path = "E:\\PythonProjects\\Acronym_detection\\text_files\\"
 #doc_path = "C:\\Users\Admin\\Desktop\\Acronyms-and-Abbreviation-Expansion\dataset\\text_files\\"
-doc_path = "C:\\Users\Admin\\Desktop\\drug_port_extraction\\output\\"
+doc_path = "C:\\Users\Admin\\Desktop\\drug_port_extraction\\output_condensed\\"
 #doc_path = "E:\\PythonProjects\\acronym-dataset\\smalldata_output\\"
 
 

@@ -4,9 +4,15 @@
 import csv
 
 # paths
-datapath = "E:\\PythonProjects\\acronym-dataset\\"
-answer_dir = "E:\\PythonProjects\\acronym-dataset\\answer_output\\"
-question_dir = "E:\\PythonProjects\\acronym-dataset\\question_output\\" 
+
+#datapath = "E:\\PythonProjects\\acronym-dataset\\"
+#answer_dir = "E:\\PythonProjects\\acronym-dataset\\answer_output\\"
+#question_dir = "E:\\PythonProjects\\acronym-dataset\\question_output\\" 
+
+#Drug port datapath
+datapath = "C:\\Users\\Admin\\Desktop\\drug_port_extraction\\"
+question_dir = "C:\\Users\\Admin\\Desktop\\drug_port_extraction\\question_output\\"
+answer_dir = "C:\\Users\\Admin\\Desktop\\drug_port_extraction\\answer_output\\"
 
 # answers = open("C:\\Users\\Admin\\Desktop\\virtual\\requirements.txt")
 # questions = open("C:\\Users\\Admin\\Desktop\\virtual\\requirements.txt")

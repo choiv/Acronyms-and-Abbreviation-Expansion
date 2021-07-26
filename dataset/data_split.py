@@ -8,6 +8,13 @@ dataset_dir = "E:\\PythonProjects\\acronym-dataset\\datagen_output\\"
 smalldata_dir = "E:\\PythonProjects\\acronym-dataset\\smalldata_output\\"
 
 
+# drugport
+dataset_dir = "C:\\Users\\Admin\\Desktop\\drug_port_extraction\\output\\"
+smalldata_dir = "C:\\Users\\Admin\\Desktop\\drug_port_extraction\\output_condensed\\"
+
+
+
+
 #directory = '/dataset/datagen_output'
 
 file_list = [] # dataset 
