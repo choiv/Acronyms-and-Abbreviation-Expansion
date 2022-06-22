@@ -15,7 +15,7 @@ idna==2.10
 joblib==0.16.0
 Keras-Preprocessing==1.1.2
 Markdown==3.2.2
-numpy==1.18.5
+numpy==1.22.0
 oauthlib==3.1.0
 opt-einsum==3.3.0
 packaging==20.4
